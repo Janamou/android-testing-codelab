@@ -38,4 +38,5 @@ TODO link
 
 ## More resources
 
-TODO
+* Slides
+* TODO
