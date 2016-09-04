@@ -39,4 +39,4 @@ TODO link
 ## More resources
 
 * Slides
-* TODO
+* [Getting Started with Testing](https://developer.android.com/training/testing/start/index.html)
