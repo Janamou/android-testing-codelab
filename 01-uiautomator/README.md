@@ -1,6 +1,6 @@
 # Part 1 - UI Automator
 
-In this part of the code lab we create Android test using UI Automator library.
+In this part of the code lab we create Android test using UI Automator library. You can use UI Automator to test multiple application as well as system applications.
 
 UI Automator provides you with a couple of API classes which you can use for writing your tests.
 
@@ -113,9 +113,30 @@ Some methods that might be handy to you:
 * `setAsHorizontalList()`, `setAsVerticalList()`
 * and more...
 
+## Configurator
+[Configurator API documentation](https://developer.android.com/reference/android/support/test/uiautomator/Configurator.html)
+
+> Allows you to set key parameters for running uiautomator tests. The new settings take effect immediately and can be changed any time during a test run.
+
+## Instrumentation
+
+[Instrumentation API documentation](https://developer.android.com/reference/android/app/Instrumentation.html)
+
+> Base class for implementing application instrumentation code. When running with instrumentation turned on, this class will be instantiated for you before any of the application code, allowing you to monitor all of the interaction the system has with the application.
+
+You can use this class to retrieve context, starting Activities and more.
+
 ## UI Automator Viewer
 
-What we can do and retrieve?
+With UI Automator we can write tests for any application, e.g. we don't need to have a source code. But how can we get information about view components to be able to retrieve them? UI Automator Viewer is the tool we need. 
+
+### Run UI Automator Viewer 
+
+UI Automator Viewer is present in `<android-sdk>/tools/` folder. Connect your device to be able to do a device screenshot and inspect the layout.
+
+### What we can do and retrieve?
+
+With UI Automator Viewer you can see actual layout hierarchy and retrieve information about view components such as bounds, content description, state information and more.
 
 TODO image
 
@@ -124,5 +145,7 @@ TODO image
 ### Step 1 - New test
 
 We start with the folder `step_0_start`.
+
+TODO Nexus 6, Android 6?
 
 ### Result
