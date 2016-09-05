@@ -15,26 +15,25 @@ Download the prepared project from Github and open it in Android studio. Everyth
 
 In this part of the code lab we create Android test using UI Automator library.
 
-TODO link
-
+[Let's dive into UI Automator](https://github.com/Janamou/android-testing-codelab/tree/master/01-uiautomator)
 
 ## Part 2 - Espresso
 
 In this part of the code lab we create Android test using Espresso library.
 
-TODO link
+[Let's dive into Espresso](https://github.com/Janamou/android-testing-codelab/tree/master/02-espresso)
 
 ## Part 3 - Test runner
 
 In this part of the code lab we learn to use Test recorder tool.
 
-TODO link
+[Let's dive into Test runner](https://github.com/Janamou/android-testing-codelab/tree/master/03-test-runner)
 
 ## Part 4 - Monkey
 
 In this part of the code lab we learn to use Monkey tool.
 
-TODO link
+[Let's dive into Monkey](https://github.com/Janamou/android-testing-codelab/tree/master/04-monkey)
 
 ## More resources
 
