@@ -1,4 +1,4 @@
-package moudra.net.uiautomatorapp;
+package net.moudra.uiautomatorapp;
 
 import android.os.SystemClock;
 import android.support.test.InstrumentationRegistry;
@@ -10,10 +10,12 @@ import android.support.test.uiautomator.UiScrollable;
 import android.support.test.uiautomator.UiSelector;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 @SdkSuppress(minSdkVersion = 18)
@@ -35,78 +37,78 @@ public class AutomatorTest {
     public void testCalculator() throws Exception {
         // Home screen apps button
         UiObject appButton = uiDevice.findObject(new UiSelector().descriptionContains("Apps"));
-        Assert.assertTrue(appButton.exists());
+        assertTrue(appButton.exists());
 
         appButton.clickAndWaitForNewWindow();
 
         // Scrollable view with apps
         UiScrollable appViews = new UiScrollable(new UiSelector().scrollable(true));
-        Assert.assertTrue(appViews.exists());
+        assertTrue(appViews.exists());
 
         appViews.setAsHorizontalList();
 
         // Find calculator application
         UiObject calculatorApp = appViews.getChildByText(new UiSelector()
                 .className("android.widget.TextView"), "Calculator");
-        Assert.assertTrue(calculatorApp.exists());
+        assertTrue(calculatorApp.exists());
 
         calculatorApp.clickAndWaitForNewWindow();
 
         // Use calculator app
         UiObject clearButton = uiDevice.findObject(new UiSelector().textMatches("clr|del"));
-        Assert.assertTrue(clearButton.exists());
-        clearButton.click();
+        assertTrue(clearButton.exists());
+        clearButton.longClick();
 
         UiObject threeButton = uiDevice.findObject(new UiSelector().text("3"));
-        Assert.assertTrue(threeButton.exists());
+        assertTrue(threeButton.exists());
         threeButton.click();
 
         UiObject plusButton = uiDevice.findObject(new UiSelector().text("+"));
-        Assert.assertTrue(plusButton.exists());
+        assertTrue(plusButton.exists());
         plusButton.click();
 
         UiObject fiveButton = uiDevice.findObject(new UiSelector().text("5"));
-        Assert.assertTrue(fiveButton.exists());
+        assertTrue(fiveButton.exists());
         fiveButton.click();
 
         UiObject equalsButton = uiDevice.findObject(new UiSelector().text("="));
-        Assert.assertTrue(equalsButton.exists());
+        assertTrue(equalsButton.exists());
         equalsButton.click();
 
         UiObject display = uiDevice.findObject(new UiSelector()
                 .resourceId("com.android.calculator2:id/display"));
-        Assert.assertTrue(display.exists());
+        assertTrue(display.exists());
 
         // Validate
         UiObject displayNumber = display.getChild(new UiSelector().index(0));
-        Assert.assertTrue(displayNumber.exists());
-        Assert.assertEquals(displayNumber.getText(), "8");
+        assertTrue(displayNumber.exists());
+        assertEquals(displayNumber.getText(), "8");
     }
 
     @Test
     public void testBrowserApp() throws Exception {
         // Home screen apps button
         UiObject appButton = uiDevice.findObject(new UiSelector().descriptionContains("Apps"));
-        Assert.assertTrue(appButton.exists());
+        assertTrue(appButton.exists());
 
         appButton.clickAndWaitForNewWindow();
 
         // Scrollable view with apps
         UiScrollable appViews = new UiScrollable(new UiSelector().scrollable(true));
-        Assert.assertTrue(appViews.exists());
+        assertTrue(appViews.exists());
 
         appViews.setAsHorizontalList();
 
         // Find browser application
         UiObject browserApp = appViews.getChildByText(new UiSelector()
                 .className("android.widget.TextView"), "Browser");
-        Assert.assertTrue(browserApp.exists());
+        assertTrue(browserApp.exists());
         browserApp.clickAndWaitForNewWindow();
 
         // Browser App set url
         UiObject urlForm = uiDevice.findObject(new UiSelector()
                 .resourceId("com.android.browser:id/url"));
-        Assert.assertTrue(urlForm.exists());
+        assertTrue(urlForm.exists());
         urlForm.click();
         urlForm.setText("www.google.com");
         uiDevice.pressEnter();
@@ -120,12 +122,12 @@ public class AutomatorTest {
         // Find text on page
         UiObject findButton = uiDevice.findObject(new UiSelector()
                 .text("Find on page"));
-        Assert.assertTrue(findButton.exists());
+        assertTrue(findButton.exists());
         findButton.click();
 
         UiObject findView = uiDevice.findObject(new UiSelector()
                 .resourceId("android:id/edit"));
-        Assert.assertTrue(findView.exists());
+        assertTrue(findView.exists());
         findView.setText("Google");
         uiDevice.pressEnter();
 
@@ -134,7 +136,7 @@ public class AutomatorTest {
         // Dismiss search
         UiObject okButtonView = uiDevice.findObject(new UiSelector()
                 .resourceId("com.android.browser:id/iconcombo"));
-        Assert.assertTrue(okButtonView.exists());
+        assertTrue(okButtonView.exists());
         okButtonView.click();
     }
 }

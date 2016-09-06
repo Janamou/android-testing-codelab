@@ -82,7 +82,14 @@ onView(withId(R.id.name_edittext))
     .check(matches(withText("Hello")));
 ```
 
+## Code lab
+
+### Step 1 - New test
+
+We start with the folder `step_0_start`.
+
 # More resources
 * [Espresso testing](https://developer.android.com/training/testing/ui-testing/espresso-testing.html)
 * [Espresso](https://developer.android.com/topic/libraries/testing-support-library/index.html#Espresso)
+* [Android Testing Codelab](https://codelabs.developers.google.com/codelabs/android-testing/index.html)
 * [Hamcrest](http://hamcrest.org/)
