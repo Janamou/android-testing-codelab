@@ -25,7 +25,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         String text = messageEditText.getText().toString();
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(EXTRA_NAME, text);
+        if (!text.isEmpty()) {
+            intent.putExtra(EXTRA_NAME, text);
+        }
         startActivity(intent);
     }
 }
