@@ -52,3 +52,37 @@ Some methods that might be handy to you:
 > A collection of common ViewAssertions.
 
 Usually we use the `matches()` method if the view is matched by the view matcher.
+
+## How to retrieve elements?
+
+To retrieve element from hierarchy we call `onView()` method with correct `ViewMatcher`. If the match is not found, it throws a `NoMatchingViewException`.
+
+Example:
+
+```java
+onView(withId(R.id.name_edittext));
+```
+
+With some AdapterView (for example LitView), the method `onData()` instead of `onView()` has to be used.
+
+After that you can call some interaction method through the `ViewActions` class.
+
+Example:
+
+```java
+onView(withId(R.id.name_edittext))
+    .perform(typeTextIntoFocusedView("Hello"));
+```
+
+And then you can check the result with the `ViewAssertions` class:
+
+```java
+onView(withId(R.id.name_edittext))
+    .perform(typeTextIntoFocusedView("Hello"))
+    .check(matches(withText("Hello")));
+```
+
+# More resources
+* [Espresso testing](https://developer.android.com/training/testing/ui-testing/espresso-testing.html)
+* [Espresso](https://developer.android.com/topic/libraries/testing-support-library/index.html#Espresso)
+* [Hamcrest](http://hamcrest.org/)
