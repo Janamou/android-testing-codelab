@@ -4,13 +4,14 @@ In this part of the code lab we create Android test using UI Automator library. 
 
 UI Automator provides you with a couple of API classes which you can use for writing your tests.
 
-Available classes:
+Some of available classes:
 
 * `UiDevice`
 * `UiObject`
 * `UiSelector`
 * `UiCollection`
 * `UiScrollable`
+* `Configurator`
 
 ## UiDevice
 
