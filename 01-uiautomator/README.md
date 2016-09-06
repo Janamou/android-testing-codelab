@@ -139,7 +139,9 @@ UI Automator Viewer is present in `<android-sdk>/tools/` folder. Connect your de
 
 With UI Automator Viewer you can see actual layout hierarchy and retrieve information about view components such as bounds, content description, state information and more.
 
-TODO image
+You can find this tool in `<android-sdk>/tools/` folder.
+
+![UI Automator Viewer](uiautomator-viewer.png)
 
 ## Code lab
 
@@ -150,3 +152,7 @@ We start with the folder `step_0_start`.
 TODO Nexus 6, Android 6?
 
 ### Result
+
+# More resources
+* [UI Automator testing](https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html)
+* [UI Automator](https://developer.android.com/topic/libraries/testing-support-library/index.html#UIAutomator)

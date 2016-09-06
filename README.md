@@ -23,11 +23,11 @@ In this part of the code lab we create Android test using Espresso library.
 
 [Let's dive into Espresso](https://github.com/Janamou/android-testing-codelab/tree/master/02-espresso)
 
-## Part 3 - Test runner
+## Part 3 - Test recorder
 
 In this part of the code lab we learn to use Test recorder tool.
 
-[Let's dive into Test runner](https://github.com/Janamou/android-testing-codelab/tree/master/03-test-runner)
+[Let's dive into Test recorder](https://github.com/Janamou/android-testing-codelab/tree/master/03-test-recorder)
 
 ## Part 4 - Monkey
 
