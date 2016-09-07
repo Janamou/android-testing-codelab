@@ -238,7 +238,7 @@ Let's implement the test! Implement this code to our `testCalculator()` method:
 
 #### Open the apps screen
 
-Find the view with "Apps" description, validate it, click on it and wait.
+Find the view with "Apps" description, validate it, click on it and wait for a new window.
 
 ```java
 // Home screen apps button
@@ -262,7 +262,7 @@ appViews.setAsHorizontalList();
 
 #### Search for the app in the scrollable view and then open it
 
-Search for the app with name "Calculator", validate it, click on it and wait.
+Search for the app with name "Calculator", validate it, click on it and wait for a new window.
 
 ```java
 // Find calculator application
@@ -350,7 +350,7 @@ Let's implement the second test! Implement this code to our `testBrowserApp()` m
 
 #### Open the apps screen
 
-Find the view with "Apps" description, validate it, click on it and wait. We have already seen this in our previous test.
+Find the view with "Apps" description, validate it, click on it and wait for a new window. We have already seen this in our previous test.
 
 ```java
 // Home screen apps button
@@ -374,7 +374,7 @@ appViews.setAsHorizontalList();
 
 #### Search for the app in the scrollable view and then open it
 
-Search for the app with name "Browser", validate it, click on it and wait.
+Search for the app with name "Browser", validate it, click on it and wait for a new window.
 
 ```java
 // Find browser application
