@@ -143,13 +143,440 @@ With UI Automator Viewer you can see actual layout hierarchy and retrieve inform
 
 ## Code lab
 
-### Step 1 - New test
+We write two simple tests using UI Automator library in this code lab. Because we can use UI Automator to test system apps, we write the first test for the Calculator app and the second test for the Browser app.
 
-We start with the folder `start`.
+> Attention: Both tests assume that your device is in the english language. Some views are retrieved by some containing text so in your case and on your device, the text might be different. For example **Calculator** app would be **Kalkulačka** in czech language. If you use a different language, update the selectors to match your local names.
 
-TODO Nexus 6, Android 6?
+> Tests works nice on Nexus 6, Android 6, with english language.
+
+### Step 1 - Open the project
+
+We start with the folder `start`. Here you find an empty project where all the needed dependencies are added. Just run Gradle sync on your `build.gradle` file. You can see there dependencies for test runner and UI Automator.
+
+Explore the src/androidTest/java folder. You can find here an empty AutomatorTest class in package net.moudra.uiautomatorapp. We write our two tests here.
+
+### Step 2 - Explore the class
+
+The `AutomatorTest` class is empty at the moment. The class has two annotations. The `@RunWith` defines that it uses JUnit 4-compatible test runner for Android and `@SdkSuppress` means that the test will not run on the lowest Android version than 18.
+
+```java
+@RunWith(AndroidJUnit4.class)
+@SdkSuppress(minSdkVersion = 18)
+public class AutomatorTest {
+
+}
+```
+
+We create two test methods - one for testing the Calculator app and the second for the Browser app.
+
+### Step 3 - Before test
+
+With UI Automator, we need to get the instance of `UiDevice` first. We will do this in our JUnit annotated `@Before` method and we save our device into local variable:
+
+```java
+@RunWith(AndroidJUnit4.class)
+@SdkSuppress(minSdkVersion = 18)
+public class AutomatorTest {
+    private UiDevice uiDevice;
+
+    @Before
+    public void beforeTest() {
+        uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        uiDevice.pressHome();
+    }
+}
+```
+
+Before every test, the `@Before` annotated method is run. It saves an instance of `UiDevice` and opens the home screen.
+
+### Step 4 - After test
+
+We add here also the @After test method to go again to home screen after every test.
+
+```java
+@RunWith(AndroidJUnit4.class)
+@SdkSuppress(minSdkVersion = 18)
+public class AutomatorTest {
+    private UiDevice uiDevice;
+
+    @Before
+    public void beforeTest() {
+        uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        uiDevice.pressHome();
+    }
+    
+    @After
+    public void afterTest() {
+        uiDevice.pressHome();
+    }
+}
+```
+
+### Step 5 - Calculator App test
+
+Let's write our test for the calculator app. Create a @Test annotated method:
+
+```java
+@Test
+public void testCalculator() throws Exception {
+
+}
+```
+
+The test process for the Calculator App test looks like this:
+
+1. Open the apps screen
+2. Retrieve scrollable view with apps
+3. Search for the app in the scrollable view and then open it
+4. Press the clear button to delete possible previous values on display
+5. Calculate the sum of two values, 3 and 5
+6. Check the sum
+
+Let's implement the test! Implement this code to our `testCalculator()` method:
+
+#### Open the apps screen
+
+Find the view with "Apps" description, validate it, click on it and wait.
+
+```java
+// Home screen apps button
+UiObject appButton = uiDevice.findObject(new UiSelector().descriptionContains("Apps"));
+assertTrue(appButton.exists());
+
+appButton.clickAndWaitForNewWindow();
+```
+
+#### Retrieve scrollable view with apps
+
+Find the scrollable element in apps, validate it, and set it to horizontal list to be able to scroll horizontally.
+
+```java
+// Scrollable view with apps
+UiScrollable appViews = new UiScrollable(new UiSelector().scrollable(true));
+assertTrue(appViews.exists());
+
+appViews.setAsHorizontalList();
+```
+
+#### Search for the app in the scrollable view and then open it
+
+Search for the app with name "Calculator", validate it, click on it and wait.
+
+```java
+// Find calculator application
+UiObject calculatorApp = appViews.getChildByText(new UiSelector()
+        .className("android.widget.TextView"), "Calculator");
+assertTrue(calculatorApp.exists());
+
+calculatorApp.clickAndWaitForNewWindow();
+```
+
+#### Press the clear button to delete possible previous values on display
+
+> Warning: This is an important step. The test might fail next time if the value on the display is not cleared.
+
+Search for view with text either "clr" or "del", validate it and press long click.
+
+```java
+// Use calculator app
+UiObject clearButton = uiDevice.findObject(new UiSelector().textMatches("clr|del"));
+assertTrue(clearButton.exists());
+clearButton.longClick();
+```
+
+#### Calculate the sum of two values, 3 and 5
+
+Retrieve every button, validate it and click on it.
+
+```java
+UiObject threeButton = uiDevice.findObject(new UiSelector().text("3"));
+assertTrue(threeButton.exists());
+threeButton.click();
+
+UiObject plusButton = uiDevice.findObject(new UiSelector().text("+"));
+assertTrue(plusButton.exists());
+plusButton.click();
+
+UiObject fiveButton = uiDevice.findObject(new UiSelector().text("5"));
+assertTrue(fiveButton.exists());
+fiveButton.click();
+
+UiObject equalsButton = uiDevice.findObject(new UiSelector().text("="));
+assertTrue(equalsButton.exists());
+equalsButton.click();
+```
+
+#### Check the sum
+
+Check the final sum on display if it matches the expected result.
+
+```java
+UiObject display = uiDevice.findObject(new UiSelector()
+        .resourceId("com.android.calculator2:id/display"));
+assertTrue(display.exists());
+
+// Validate
+UiObject displayNumber = display.getChild(new UiSelector().index(0));
+assertTrue(displayNumber.exists());
+assertEquals(displayNumber.getText(), "8");
+```
+
+### Step 6 - Browser App test
+    
+Let's write our next test for the browser app. Create a @Test annotated method:
+    
+```java
+@Test
+public void testBrowserApp() throws Exception {
+
+}
+```
+    
+The test process for the Browser App test looks like this:
+
+1. Open the apps screen
+2. Retrieve scrollable view with apps
+3. Search for the app in the scrollable view and then open it
+4. Type an url into browser and wait to load
+5. Open menu and find on page
+6. Search for the keyword
+7. Dismiss the search
+
+Let's implement the second test! Implement this code to our `testBrowserApp()` method:
+
+#### Open the apps screen
+
+Find the view with "Apps" description, validate it, click on it and wait. We have already seen this in our previous test.
+
+```java
+// Home screen apps button
+UiObject appButton = uiDevice.findObject(new UiSelector().descriptionContains("Apps"));
+assertTrue(appButton.exists());
+
+appButton.clickAndWaitForNewWindow();
+```
+
+#### Retrieve scrollable view with apps
+
+Find the scrollable element in apps, validate it, and set it to horizontal list to be able to scroll horizontally. We have already seen this in our previous test.
+
+```java
+// Scrollable view with apps
+UiScrollable appViews = new UiScrollable(new UiSelector().scrollable(true));
+assertTrue(appViews.exists());
+
+appViews.setAsHorizontalList();
+```
+
+#### Search for the app in the scrollable view and then open it
+
+Search for the app with name "Browser", validate it, click on it and wait.
+
+```java
+// Find browser application
+UiObject browserApp = appViews.getChildByText(new UiSelector()
+        .className("android.widget.TextView"), "Browser");
+assertTrue(browserApp.exists());
+browserApp.clickAndWaitForNewWindow();
+```
+
+#### Type an url into browser and wait to load
+
+Search for the browser url view with resource id `com.android.browser:id/url`, validate it and click on it. Then set the text to www.google.com and press enter.
+
+We want to wait some time before the page is loaded. We wait 10 seconds because of the `SystemClock.sleep()` method.
+
+```java
+// Browser App set url
+UiObject urlForm = uiDevice.findObject(new UiSelector()
+        .resourceId("com.android.browser:id/url"));
+assertTrue(urlForm.exists());
+urlForm.click();
+urlForm.setText("www.google.com");
+uiDevice.pressEnter();
+
+// Wait to load page
+SystemClock.sleep(10000);
+```
+
+#### Open menu and find on page
+
+Open the menu by calling `pressMenu()` on UiDevice and then search there for view with "Find on page" text. Validate it and click on it.
+
+```java
+// Show menu
+uiDevice.pressMenu();
+
+// Find text on page
+UiObject findButton = uiDevice.findObject(new UiSelector()
+        .text("Find on page"));
+assertTrue(findButton.exists());
+findButton.click();
+```
+
+#### Search for the keyword
+
+Find the search field and, click on it, type there "Google" and press enter. Then wait two seconds.
+
+```java
+UiObject findView = uiDevice.findObject(new UiSelector()
+                .resourceId("android:id/edit"));
+assertTrue(findView.exists());
+findView.click();
+findView.setText("Google");
+uiDevice.pressEnter();
+
+SystemClock.sleep(2000);
+```
+
+#### Dismiss the search
+
+Dismiss the search field to avoid problems with running the test again.
+
+```java
+// Dismiss search
+UiObject okButtonView = uiDevice.findObject(new UiSelector()
+        .resourceId("com.android.browser:id/iconcombo"));
+assertTrue(okButtonView.exists());
+okButtonView.click();
+```
+
+### Run tests
+
+Select `Run AutomatorTest` with emulator launched or device connected.
+
+See how it goes through the both applications.
 
 ### Result
+
+Whole app source code:
+
+```java
+@RunWith(AndroidJUnit4.class)
+@SdkSuppress(minSdkVersion = 18)
+public class AutomatorTest {
+    private UiDevice uiDevice;
+
+    @Before
+    public void beforeTest() {
+        uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        uiDevice.pressHome();
+    }
+
+    @After
+    public void afterTest() {
+        uiDevice.pressHome();
+    }
+
+    @Test
+    public void testCalculator() throws Exception {
+        // Home screen apps button
+        UiObject appButton = uiDevice.findObject(new UiSelector().descriptionContains("Apps"));
+        assertTrue(appButton.exists());
+
+        appButton.clickAndWaitForNewWindow();
+
+        // Scrollable view with apps
+        UiScrollable appViews = new UiScrollable(new UiSelector().scrollable(true));
+        assertTrue(appViews.exists());
+
+        appViews.setAsHorizontalList();
+
+        // Find calculator application
+        UiObject calculatorApp = appViews.getChildByText(new UiSelector()
+                .className("android.widget.TextView"), "Calculator");
+        assertTrue(calculatorApp.exists());
+
+        calculatorApp.clickAndWaitForNewWindow();
+
+        // Use calculator app
+        UiObject clearButton = uiDevice.findObject(new UiSelector().textMatches("clr|del"));
+        assertTrue(clearButton.exists());
+        clearButton.longClick();
+
+        UiObject threeButton = uiDevice.findObject(new UiSelector().text("3"));
+        assertTrue(threeButton.exists());
+        threeButton.click();
+
+        UiObject plusButton = uiDevice.findObject(new UiSelector().text("+"));
+        assertTrue(plusButton.exists());
+        plusButton.click();
+
+        UiObject fiveButton = uiDevice.findObject(new UiSelector().text("5"));
+        assertTrue(fiveButton.exists());
+        fiveButton.click();
+
+        UiObject equalsButton = uiDevice.findObject(new UiSelector().text("="));
+        assertTrue(equalsButton.exists());
+        equalsButton.click();
+
+        UiObject display = uiDevice.findObject(new UiSelector()
+                .resourceId("com.android.calculator2:id/display"));
+        assertTrue(display.exists());
+
+        // Validate
+        UiObject displayNumber = display.getChild(new UiSelector().index(0));
+        assertTrue(displayNumber.exists());
+        assertEquals(displayNumber.getText(), "8");
+    }
+
+    @Test
+    public void testBrowserApp() throws Exception {
+        // Home screen apps button
+        UiObject appButton = uiDevice.findObject(new UiSelector().descriptionContains("Apps"));
+        assertTrue(appButton.exists());
+
+        appButton.clickAndWaitForNewWindow();
+
+        // Scrollable view with apps
+        UiScrollable appViews = new UiScrollable(new UiSelector().scrollable(true));
+        assertTrue(appViews.exists());
+
+        appViews.setAsHorizontalList();
+
+        // Find browser application
+        UiObject browserApp = appViews.getChildByText(new UiSelector()
+                .className("android.widget.TextView"), "Browser");
+        assertTrue(browserApp.exists());
+        browserApp.clickAndWaitForNewWindow();
+
+        // Browser App set url
+        UiObject urlForm = uiDevice.findObject(new UiSelector()
+                .resourceId("com.android.browser:id/url"));
+        assertTrue(urlForm.exists());
+        urlForm.click();
+        urlForm.setText("www.google.com");
+        uiDevice.pressEnter();
+
+        // Wait to load page
+        SystemClock.sleep(10000);
+
+        // Show menu
+        uiDevice.pressMenu();
+
+        // Find text on page
+        UiObject findButton = uiDevice.findObject(new UiSelector()
+                .text("Find on page"));
+        assertTrue(findButton.exists());
+        findButton.click();
+
+        UiObject findView = uiDevice.findObject(new UiSelector()
+                .resourceId("android:id/edit"));
+        assertTrue(findView.exists());
+        findView.click();
+        findView.setText("Google");
+        uiDevice.pressEnter();
+
+        SystemClock.sleep(2000);
+
+        // Dismiss search
+        UiObject okButtonView = uiDevice.findObject(new UiSelector()
+                .resourceId("com.android.browser:id/iconcombo"));
+        assertTrue(okButtonView.exists());
+        okButtonView.click();
+    }
+}
+```
 
 # More resources
 
