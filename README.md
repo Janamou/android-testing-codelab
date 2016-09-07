@@ -37,5 +37,5 @@ In this part of the code lab we learn to use Monkey tool.
 
 ## More resources
 
-* [My Slides](github.com/Janamou/android-testing-codelab)
+* [My Slides](https://docs.google.com/presentation/d/1vBDKd_bLSgL0E0g1yMrtH-OLwF9DrepYzHXdePp6lXc)
 * [Getting Started with Testing](https://developer.android.com/training/testing/start/index.html)
