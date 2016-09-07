@@ -128,6 +128,7 @@ public class AutomatorTest {
         UiObject findView = uiDevice.findObject(new UiSelector()
                 .resourceId("android:id/edit"));
         assertTrue(findView.exists());
+        findView.click();
         findView.setText("Google");
         uiDevice.pressEnter();
 
