@@ -12,7 +12,7 @@ adb shell monkey [options] <event-count>
 
 ## Code lab
 
-### Step 1 - Open command line
+### Open command line and use Monkey tool
 
 Type this into console with your app opened. 
 
