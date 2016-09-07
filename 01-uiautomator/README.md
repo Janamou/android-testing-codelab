@@ -232,6 +232,8 @@ The test process for the Calculator App test looks like this:
 5. Calculate the sum of two values, 3 and 5
 6. Check the sum
 
+![Calculator app](calculator-app.png)
+
 Let's implement the test! Implement this code to our `testCalculator()` method:
 
 #### Open the apps screen
@@ -341,6 +343,8 @@ The test process for the Browser App test looks like this:
 5. Open menu and find on page
 6. Search for the keyword
 7. Dismiss the search
+
+![Browser app](browser-app.png)
 
 Let's implement the second test! Implement this code to our `testBrowserApp()` method:
 
