@@ -6,10 +6,10 @@ You will learn:
 
 * how to write Android UI tests using UI Automator library
 * how to write Android UI tests using Espresso library
-* how to use Android test recorder
+* how to use Android Test Recorder
 * how to use Monkey tool
 
-Download the prepared project from Github and open it in Android studio. Everything important is prepared for you. Project is divided into parts according to this Code Lab.
+Download the prepared project for every step from Github and open it in Android studio. Everything important is prepared for you. The Code Lab is divided into parts.
 
 ## Part 1 - UI Automator
 
@@ -25,7 +25,7 @@ In this part of the code lab we create Android test using Espresso library.
 
 ## Part 3 - Test recorder
 
-In this part of the code lab we learn to use Test recorder tool.
+In this part of the code lab we learn to use Test Recorder tool.
 
 [Let's dive into Test recorder](https://github.com/Janamou/android-testing-codelab/tree/master/03-test-recorder)
 
@@ -37,5 +37,5 @@ In this part of the code lab we learn to use Monkey tool.
 
 ## More resources
 
-* Slides
+* [My Slides](github.com/Janamou/android-testing-codelab)
 * [Getting Started with Testing](https://developer.android.com/training/testing/start/index.html)
