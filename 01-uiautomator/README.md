@@ -154,5 +154,6 @@ TODO Nexus 6, Android 6?
 ### Result
 
 # More resources
+
 * [UI Automator testing](https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html)
 * [UI Automator](https://developer.android.com/topic/libraries/testing-support-library/index.html#UIAutomator)

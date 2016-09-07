@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EspressoApp</string>
+    <string name="app_name">TestRecorderApp</string>
     <string name="nothing_here">Nothing here :-(</string>
     <string name="message_edittext">Say message</string>
     <string name="message_btn">Send</string>

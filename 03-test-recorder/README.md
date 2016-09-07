@@ -39,4 +39,5 @@ Give your test class some name.
 Run the test and see how it works.
 
 # More resources
+
 * [Espresso Test Recorder](http://tools.android.com/tech-docs/test-recorder)
