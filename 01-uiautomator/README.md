@@ -1,6 +1,6 @@
 # Part 1 - UI Automator
 
-In this part of the code lab we create Android test using **UI Automator** library. You can use UI Automator to test multiple applications as well as system applications.
+In this part of the code lab we create Android test using **UI Automator** library. You can use the UI Automator library to test multiple applications as well as system applications.
 
 UI Automator provides you with a couple of API classes which you can use for your tests.
 
@@ -39,7 +39,7 @@ Some methods that might be handy to you:
 
 You use `UiObject` class for working with views. When you search for an object through the `findObject()` method, the `UiObject` instance is returned.
 
-We call methods to perform actions on the view and we are also able to retrieve a couple of properties from the retrieved view.
+We can call methods to perform actions on the view and we are also able to retrieve a couple of properties from the retrieved view.
 
 Some methods that might be handy to you:
 
@@ -87,7 +87,7 @@ Some methods that might be handy to you:
 
 > Used to enumerate a container's UI elements for the purpose of counting, or targeting a sub elements by a child's text or description.
 
-Use `UiCollection` if you want to simulate user interactions on a collection of views.
+Use `UiCollection` for simulating user interactions on a collection of views.
 
 ## UiScrollable
 
@@ -145,19 +145,19 @@ With UI Automator Viewer you can see actual layout hierarchy and retrieve inform
 
 We write two simple tests using UI Automator library in this code lab. Because we can use UI Automator to test system apps, we write the first test for the Calculator app and the second test for the Browser app.
 
-> Attention: Both tests assume that your device is in the english language. Some views are retrieved by some containing text so in your case and on your device, the text might be different. For example **Calculator** app would be **Kalkulačka** in czech language. If you use a different language, update the selectors to match your local names.
+> Attention: Both tests assume that your device is in the english language. Some views are retrieved by some containing text so the text might be different in some other language. For example **Calculator** app would be **Kalkulačka** in czech language. If you use a different language, update the selectors to match your local names.
 
-> Tests works nice on Nexus 6, Android 6, with english language.
+> Tests works on Nexus 6, Android 6, with english language.
 
 ### Step 1 - Open the project
 
 We start with the folder `start`. Here you find an empty project where all the needed dependencies are added. Just run Gradle sync on your `build.gradle` file. You can see there dependencies for test runner and UI Automator.
 
-Explore the src/androidTest/java folder. You can find here an empty AutomatorTest class in package net.moudra.uiautomatorapp. We write our two tests here.
+Explore the `src/androidTest/java` folder. You can find here an empty `AutomatorTest` class in package `net.moudra.uiautomatorapp`. We write our two tests here.
 
 ### Step 2 - Explore the class
 
-The `AutomatorTest` class is empty at the moment. The class has two annotations. The `@RunWith` defines that it uses JUnit 4-compatible test runner for Android and `@SdkSuppress` means that the test will not run on the lowest Android version than 18.
+The `AutomatorTest` class is empty at the moment. The class has two annotations. The `@RunWith` defines that it uses JUnit 4-compatible test runner for Android and `@SdkSuppress` describes that the test will not run on the lowest Android version than 18.
 
 ```java
 @RunWith(AndroidJUnit4.class)
@@ -171,7 +171,7 @@ We create two test methods - one for testing the Calculator app and the second o
 
 ### Step 3 - Before test
 
-With UI Automator, we need to get the instance of `UiDevice` first. We will do this in our JUnit annotated `@Before` method and we save our device into local variable:
+With UI Automator, we need to get the instance of `UiDevice` first. We will do this in our JUnit annotated `@Before` method and we save our device into local variable `uiDevice`:
 
 ```java
 @RunWith(AndroidJUnit4.class)
@@ -187,11 +187,11 @@ public class AutomatorTest {
 }
 ```
 
-Before every test, the `@Before` annotated method is run. It saves an instance of `UiDevice` and opens the home screen.
+Before every test, the `@Before` annotated method is run. It saves an instance of `UiDevice` and opens the Android's home screen.
 
 ### Step 4 - After test
 
-We add here also the @After test method to go again to home screen after every test.
+We also add here the `@After` test method to go again to home screen after every test.
 
 ```java
 @RunWith(AndroidJUnit4.class)
@@ -214,7 +214,7 @@ public class AutomatorTest {
 
 ### Step 5 - Calculator App test
 
-Let's write our test for the calculator app. Create a @Test annotated method:
+Let's write our test for the Calculator app. Create a `@Test` annotated method:
 
 ```java
 @Test
@@ -223,12 +223,12 @@ public void testCalculator() throws Exception {
 }
 ```
 
-The process for the Calculator App test looks like this:
+The process for the Calculator app test looks like this:
 
 1. Open the apps screen
-2. Retrieve scrollable view with apps
-3. Search for the app in the scrollable view and then open it
-4. Press the clear button to delete possible previous values on display
+2. Retrieve the scrollable view with apps
+3. Search for the app in the scrollable view and open it
+4. Press the clear button to delete possible previous values on the display
 5. Calculate the sum of two values, 3 and 5
 6. Check the sum
 
@@ -238,7 +238,7 @@ Let's implement the test! Implement this code to our `testCalculator()` method:
 
 #### Open the apps screen
 
-Find the view with "Apps" description, validate it, click on it and wait for a new window.
+Find the view with "Apps" description, validate it, click on it and wait for the new window.
 
 ```java
 // Home screen apps button
@@ -248,9 +248,9 @@ assertTrue(appButton.exists());
 appButton.clickAndWaitForNewWindow();
 ```
 
-#### Retrieve scrollable view with apps
+#### Retrieve the scrollable view with apps
 
-Find the scrollable element in apps, validate it, and set it to horizontal list to be able to scroll horizontally.
+Find the scrollable element in apps, validate it, and set it as horizontal list to be able to scroll horizontally.
 
 ```java
 // Scrollable view with apps
@@ -260,9 +260,9 @@ assertTrue(appViews.exists());
 appViews.setAsHorizontalList();
 ```
 
-#### Search for the app in the scrollable view and then open it
+#### Search for the app in the scrollable view and open it
 
-Search for the app with name "Calculator", validate it, click on it and wait for a new window.
+Search for the app with name "Calculator", validate it, click on it and wait for the new window.
 
 ```java
 // Find calculator application
@@ -273,11 +273,11 @@ assertTrue(calculatorApp.exists());
 calculatorApp.clickAndWaitForNewWindow();
 ```
 
-#### Press the clear button to delete possible previous values on display
+#### Press the clear button to delete possible previous values on the display
 
 > Warning: This is an important step. The test might fail next time if the value on the display is not cleared.
 
-Search for view with text either "clr" or "del", validate it and press long click.
+Search for the view with text either "clr" or "del", validate it and do a long click.
 
 ```java
 // Use calculator app
@@ -310,7 +310,7 @@ equalsButton.click();
 
 #### Check the sum
 
-Check the final sum on display if it matches the expected result.
+Check the final sum on the display if it matches the expected result.
 
 ```java
 UiObject display = uiDevice.findObject(new UiSelector()
@@ -323,9 +323,11 @@ assertTrue(displayNumber.exists());
 assertEquals(displayNumber.getText(), "8");
 ```
 
+We are done here!
+
 ### Step 6 - Browser App test
     
-Let's write our next test for the browser app. Create a @Test annotated method:
+Let's write our next test for the browser app. Create a `@Test` annotated method:
     
 ```java
 @Test
@@ -337,10 +339,10 @@ public void testBrowserApp() throws Exception {
 The process for the Browser App test looks like this:
 
 1. Open the apps screen
-2. Retrieve scrollable view with apps
+2. Retrieve the scrollable view with apps
 3. Search for the app in the scrollable view and then open it
-4. Type an url into browser and wait to load
-5. Open menu and find on page
+4. Type the url into the browser and wait to load
+5. Open the menu and find on page
 6. Search for the keyword
 7. Dismiss the search
 
@@ -350,7 +352,7 @@ Let's implement the second test! Implement this code to our `testBrowserApp()` m
 
 #### Open the apps screen
 
-Find the view with "Apps" description, validate it, click on it and wait for a new window. We have already seen this in our previous test.
+Find the view with "Apps" description, validate it, click on it and wait for the new window. We have already seen this in our previous test.
 
 ```java
 // Home screen apps button
@@ -360,9 +362,9 @@ assertTrue(appButton.exists());
 appButton.clickAndWaitForNewWindow();
 ```
 
-#### Retrieve scrollable view with apps
+#### Retrieve the scrollable view with apps
 
-Find the scrollable element in apps, validate it, and set it to horizontal list to be able to scroll horizontally. We have already seen this in our previous test.
+Find the scrollable element in apps, validate it, and set it as horizontal list to be able to scroll horizontally. We have already seen this in our previous test.
 
 ```java
 // Scrollable view with apps
@@ -374,7 +376,7 @@ appViews.setAsHorizontalList();
 
 #### Search for the app in the scrollable view and then open it
 
-Search for the app with name "Browser", validate it, click on it and wait for a new window.
+Search for the app with name "Browser", validate it, click on it and wait for the new window.
 
 ```java
 // Find browser application
@@ -384,7 +386,7 @@ assertTrue(browserApp.exists());
 browserApp.clickAndWaitForNewWindow();
 ```
 
-#### Type an url into browser and wait to load
+#### Type the url into the browser and wait to load
 
 Search for the browser url view with resource id `com.android.browser:id/url`, validate it and click on it. Then set the text to www.google.com and press enter.
 
@@ -403,9 +405,9 @@ uiDevice.pressEnter();
 SystemClock.sleep(10000);
 ```
 
-#### Open menu and find on page
+#### Open the menu and find on page
 
-Open the menu by calling `pressMenu()` on UiDevice and then search there for view with "Find on page" text. Validate it and click on it.
+Open the menu by calling `pressMenu()` on `UiDevice` and then search for the view with "Find on page" text. Validate it and click on it.
 
 ```java
 // Show menu
@@ -420,7 +422,7 @@ findButton.click();
 
 #### Search for the keyword
 
-Find the search field and, click on it, type there "Google" and press enter. Then wait two seconds.
+Find the search field with resource id `android:id/edit`, click on it, type there "Google" and press enter. Then wait two seconds.
 
 ```java
 UiObject findView = uiDevice.findObject(new UiSelector()
