@@ -4,6 +4,8 @@ Espresso Test Recorder is a new feature from the [Android Studio 2.2 Preview 3](
 
 This feature makes creating of Espresso UI tests very easy by recording interaction with the application. Espresso tests are then generated so there is no need for programming work.
 
+![Test recorder](test-recorder.png)
+
 ## Code lab
 
 ### Step 1 - No test
