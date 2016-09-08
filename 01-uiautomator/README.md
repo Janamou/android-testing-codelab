@@ -167,7 +167,7 @@ public class AutomatorTest {
 }
 ```
 
-We create two test methods - one for testing the Calculator app and the second for the Browser app.
+We create two test methods - one for testing the Calculator app and the second one for the Browser app.
 
 ### Step 3 - Before test
 
@@ -223,7 +223,7 @@ public void testCalculator() throws Exception {
 }
 ```
 
-The test process for the Calculator App test looks like this:
+The process for the Calculator App test looks like this:
 
 1. Open the apps screen
 2. Retrieve scrollable view with apps
@@ -334,7 +334,7 @@ public void testBrowserApp() throws Exception {
 }
 ```
     
-The test process for the Browser App test looks like this:
+The process for the Browser App test looks like this:
 
 1. Open the apps screen
 2. Retrieve scrollable view with apps
@@ -453,7 +453,7 @@ See how it goes through the both applications.
 
 ### Result
 
-Whole app source code:
+Whole test source code:
 
 ```java
 @RunWith(AndroidJUnit4.class)
