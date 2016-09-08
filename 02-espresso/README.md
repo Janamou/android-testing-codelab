@@ -1,6 +1,6 @@
 # Part 2 - Espresso
 
-In this part of the code lab we create Android test using **Espresso** library. You can use Espresso to test one application and you need to have app source codes to be able to write the test.
+In this part of the code lab we create Android test using **Espresso** library. You can use Espresso to test one application and you need to have the app source code to be able to write the test.
 
 Espresso provides you with a couple of API classes which you can use for writing your tests.
 
@@ -63,7 +63,7 @@ Example:
 onView(withId(R.id.name_edittext));
 ```
 
-With some `AdapterView` (for example `ListView`), the method `onData()` instead of `onView()` must used.
+The method `onData()` instead of `onView()` must be used with some `AdapterView` (for example `ListView`).
 
 After that you can call some interaction method through the `ViewActions` class.
 
@@ -124,9 +124,18 @@ public class EspressoTest {
 We create a `@Before` test method also. We setup here our hello String which we send to the `DetailActivity` through the form.
 
 ```java
-@Before
-public void setUp() {
-    helloString = "Hello DevFest Ukraine 2016!";
+@RunWith(AndroidJUnit4.class)
+public class EspressoTest {
+    private String helloString;
+    
+    @Rule
+    public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(
+            MainActivity.class);
+
+    @Before
+    public void setUp() {
+        helloString = "Hello DevFest Ukraine 2016!";
+    } 
 }
 ```
 
@@ -142,17 +151,17 @@ public void testFormSending() {
 ```
 
 
-The process for our App test looks like this:
+The process for our app test looks like this:
 
-1. Search for form field and type there text
-2. Search for button and click on it
+1. Search for the form field and type there text
+2. Search for the button and click on it
 3. Validate the message in the label
 
 ![Espresso app](espresso-app.png)
 
-#### Search for form field and type there text
+#### Search for the form field and type there text
 
-We use ViewMatchers withId() method to find a view with resource id message_edittext. Then we type there the hello string using ViewActions typeTextIntoFocusedView() method and finally we check the text through the ViewAssertions using ViewMatchers withText() method.
+We use `ViewMatchers` `withId()` method to find a view with resource id `message_edittext`. Then we type there the hello string using `ViewActions` `typeTextIntoFocusedView()` method and finally we check the text through the `ViewAssertions` using `ViewMatchers` `withText()` method.
 
 ```java
 onView(withId(R.id.message_edittext))
@@ -162,7 +171,7 @@ onView(withId(R.id.message_edittext))
 
 #### Search for button and click on it
 
-Search for the button with resource id message_btn and perform click on it.
+Search for the button with resource id `message_btn` and perform a click on it.
 
 ```java
 // Opens new Activity
@@ -172,7 +181,7 @@ onView(withId(R.id.message_btn))
 
 #### Validate the message in the label
 
-Search for the label with resource id message_textview and validate its text if it matches.
+Search for the label with resource id `message_textview` and validate its text if it matches.
 
 ```java
 // Checks the text
