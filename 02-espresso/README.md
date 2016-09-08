@@ -88,7 +88,7 @@ We write a test for our simple application using the Espresso library in this co
 
 ### Step 1 - Open the project
 
-We start with the folder `start`. Here you find an empty project where all the needed dependencies are added. Just run Gradle sync on your `build.gradle` file. You can see there dependencies for test runner and Espresso.
+We start with the folder `start` - EspressoApp project. Here you find an empty project where all the needed dependencies are added. You can see dependencies in the `build.gradle` for test runner and Espresso.
 
 Explore the `src/main/java` folder. You can find here two Activities. The `MainActivity` and the `DetailActivity` in the package `net.moudra.espressoapp`. This application is simple. We have a form on our main screen and whenever the form is sent, the value is passed and shown in the second window.
 
@@ -188,6 +188,8 @@ Search for the label with resource id `message_textview` and validate its text i
 onView(ViewMatchers.withId(R.id.message_textview))
         .check(matches(withText(helloString)));
 ```
+
+We are done here!
 
 ### Run tests
 

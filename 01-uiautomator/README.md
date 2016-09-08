@@ -151,7 +151,7 @@ We write two simple tests using UI Automator library in this code lab. Because w
 
 ### Step 1 - Open the project
 
-We start with the folder `start`. Here you find an empty project where all the needed dependencies are added. Just run Gradle sync on your `build.gradle` file. You can see there dependencies for test runner and UI Automator.
+We start in the folder `start` - UIAutomatorApp project. Here you find an empty project where all the needed dependencies are added. You can see dependencies in the `build.gradle` for test runner and UI Automator.
 
 Explore the `src/androidTest/java` folder. You can find here an empty `AutomatorTest` class in package `net.moudra.uiautomatorapp`. We write our two tests here.
 
@@ -446,6 +446,8 @@ UiObject okButtonView = uiDevice.findObject(new UiSelector()
 assertTrue(okButtonView.exists());
 okButtonView.click();
 ```
+
+We are also done here!
 
 ### Run tests
 
