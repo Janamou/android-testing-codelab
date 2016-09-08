@@ -8,7 +8,7 @@ This feature makes creating of Espresso UI tests very easy by recording interact
 
 ### Step 1 - No test
 
-We start in the `start` folder.
+We start in the `start` folder - TestRecorderApp project.
 
 ### Step 2 - Start recording
 
