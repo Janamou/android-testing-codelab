@@ -41,16 +41,7 @@ public class AutomatorTest {
 
         appButton.clickAndWaitForNewWindow();
 
-        // Scrollable view with apps
-        UiScrollable appViews = new UiScrollable(new UiSelector().scrollable(true));
-        assertTrue(appViews.exists());
-
-        appViews.setAsHorizontalList();
-
-        // Find calculator application
-        UiObject calculatorApp = appViews.getChildByText(new UiSelector()
-                .className("android.widget.TextView"), "Calculator");
-        assertTrue(calculatorApp.exists());
+        UiObject calculatorApp = uiDevice.findObject(new UiSelector().textContains("Calculator"));
 
         calculatorApp.clickAndWaitForNewWindow();
 
